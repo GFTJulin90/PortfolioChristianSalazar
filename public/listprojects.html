@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Firebase App with Authentication with Social Networks">
+        <title>List of projects</title>
+        <link rel="stylesheet" href="css/core.min.css" />
+        <link rel="stylesheet" href="css/vendor_bundle.min.css" />
+
+        <link rel="shortcut icon" type="image/x-icon"
+            href="https://canvascctb.s3.ca-central-1.amazonaws.com/account_1/attachments/95/CCTB_favicon.ico" />
+        <script src="https://www.gstatic.com/firebasejs/4.5.2/firebase.js"></script>
+        <script src="js/firebase.js"></script>
+        <script src="https://matriz-teletrabajo-utc.web.app/lib/jquery/jquery-3.2.1.min.js"></script>
+        <script src="js/home.js"></script>
+    </head>
+
+
+    <style>
+
+        button {
+        background-color: #8400ff; 
+        color: white; 
+        border: none; 
+        border-radius: 5px; 
+        padding: 10px 15px; 
+        font-size: 16px; 
+        cursor: pointer; 
+        margin: 5px; 
+        transition: background-color 0.3s; 
+        }
+        body {
+            font-family: Arial, sans-serif; 
+            background-color: #f8f9fa; 
+            color: #343a40; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            
+        }
+        
+        h2 {
+            margin-bottom: 20px; 
+        }
+
+        p {
+            line-height: 1.5; 
+            margin-bottom: 15px; 
+        }
+
+
+    </style>
+
+    <body>
+        <h1>Welcome to the Projects Page!</h1>
+    <p>This is a list with the following links :)</p>
+    <ul id="project-list">
+        <li><a href="https://julian-cctb-project.web.app/" target="_blank">Project 1</a></li>
+        <li><a href="https://assignment2christiansalazar.web.app/" target="_blank">Project 2</a></li>
+        <li><a href="https://assignment3christiansala-9a01f.web.app/" target="_blank">Project 3</a></li>
+    </ul>
+
+    <div id="assignment-3">
+        <button id="view-wireframe">View Wireframe</button>
+    </div>
+
+    <div id="image-modal" style="display: none;">
+        <span id="close-modal" style="cursor:pointer;">&times;</span>
+        <img src="IMG WireFR/Imagen5.png" alt="Wireframe" style="max-width: 100%; height: auto;">
+    </div>
+    
+    <button id="logout-btn">Logout</button>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyA3MzhnBrWkMPqeaLvUSn8UBarT6V2TPGE",
+        authDomain: "portfoliov1christiansalazar.firebaseapp.com",
+        projectId: "portfoliov1christiansalazar",
+        storageBucket: "portfoliov1christiansalazar.appspot.com",
+        messagingSenderId: "953864815864",
+        appId: "1:953864815864:web:43d830ab93f6f8e663a70d"
+        };
+        
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        
+    
+
+        
+        // Logout
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            auth.signOut()
+                .then(() => {
+                    window.location.href = 'index.html'; // Redirect to logout
+                })
+                .catch((error) => {
+                    console.error("Error logging out", error);
+                });
+        });
+    </script>
+    <script>
+        
+        document.getElementById('view-wireframe').onclick = function() {
+            document.getElementById('image-modal').style.display = 'block';
+        };
+
+        
+        document.getElementById('close-modal').onclick = function() {
+            document.getElementById('image-modal').style.display = 'none';
+        };
+    </script>
+    
+    </body>
+</html>

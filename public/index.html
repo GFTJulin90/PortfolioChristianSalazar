@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="Firebase App with Authentication with Social Networks">
+            <title>Login Page</title>
+        
+        
+            <link rel="shortcut icon" type="image/x-icon" href="https://canvascctb.s3.ca-central-1.amazonaws.com/account_1/attachments/95/CCTB_favicon.ico" />
+            <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+            
+        </head>
+
+        <style>
+                    body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                
+                
+            }
+                input[type="email"],
+                input[type="password"],
+                input[type="submit"] {
+                width: 15%; 
+                padding: 10px; 
+                margin-bottom: 15px; 
+                border: 1px solid #ccc; 
+                border-radius: 4px;
+                box-sizing: border-box; 
+            }
+                
+                #google-signin {
+                background-color: #4285F4; 
+                color: white; 
+                border: none; 
+                padding: 10px 20px; 
+                font-size: 16px; 
+                border-radius: 5px; 
+                cursor: pointer; 
+                transition: background-color 0.3s; 
+                }
+
+                button {
+                background-color: #f89d25; 
+                border: none; 
+                padding: 10px 20px; 
+                font-size: 16px; 
+                border-radius: 5px; 
+                cursor: pointer; 
+                transition: background-color 0.3s; 
+                }
+
+        </style>
+        
+
+        <body>
+            <h2 >Welcome to the main page</h2> 
+            
+            
+
+            <!-- Email/Password Login Form -->
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Email" required><br>
+                <input type="password" id="password" placeholder="Password" required><br>
+                <button type="submit">Login</button><br>
+            </form>
+
+            <br>
+
+            <!-- Google Sign-In Button -->
+            <button id="google-signin">Google</button>
+            
+        </body>
+
+
+        <script>
+        // Your web app's Firebase configuration
+            const firebaseConfig = {
+            apiKey: "AIzaSyA3MzhnBrWkMPqeaLvUSn8UBarT6V2TPGE",
+            authDomain: "portfoliov1christiansalazar.firebaseapp.com",
+            projectId: "portfoliov1christiansalazar",
+            storageBucket: "portfoliov1christiansalazar.appspot.com",
+            messagingSenderId: "953864815864",
+            appId: "1:953864815864:web:43d830ab93f6f8e663a70d"
+            };
+            
+            const app = firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+
+            // Login with Email/Password
+            document.getElementById('login-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        window.location.href = 'listprojects.html'; // Redirect on login
+                    })
+                    .catch((error) => {
+                        console.error("Error logging in", error);
+                    });
+            });
+
+                    document.getElementById('google-signin').addEventListener('click', function() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    
+                    console.log('successful:', result.user);
+                    window.location.href = 'listprojects.html'; 
+                })
+                .catch((error) => {
+                    
+                    console.error('Error:', error);
+                });
+            });
+        </script>
+
+
+
+
+
+
+    </body>
+</html>
+
